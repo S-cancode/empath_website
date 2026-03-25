@@ -1,22 +1,45 @@
+"use client";
+
+import { useState } from "react";
+
+const slides = [
+  {
+    heading: "You don\u2019t have to go through this alone.",
+    body: "In a world where 1 in 3 seek AI for mental health, Empath gives you a safe space to be heard and matched with someone who relates.",
+  },
+  {
+    heading: "You don\u2019t have to go through this alone.",
+    body: "Empath connects you with someone who truly gets what you\u2019re going through. Not a therapist. Not a bot. A real person, matched by AI.",
+  },
+];
+
 export function About() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
   return (
     <section id="about" className="w-full">
       {/* Mission statement */}
       <div className="bg-white py-20 sm:py-28">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-medium text-gray-900 mb-4 leading-tight">
-            You don&apos;t have to go through this alone.
+            {slides[activeSlide].heading}
           </h2>
           <p className="text-lg sm:text-xl md:text-2xl text-[#0088CC] leading-relaxed max-w-3xl mx-auto font-body">
-            Empath connects you with someone who truly gets what you&apos;re
-            going through. Not a therapist. Not a bot. A real person, matched by
-            AI.
+            {slides[activeSlide].body}
           </p>
 
-          {/* Pagination dots from design */}
+          {/* Pagination dots */}
           <div className="flex items-center justify-center gap-2 mt-10">
-            <div className="w-3 h-3 rounded-full bg-gray-900" />
-            <div className="w-3 h-3 rounded-full bg-gray-300" />
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveSlide(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className={`w-3 h-3 rounded-full transition-colors ${
+                  i === activeSlide ? "bg-gray-900" : "bg-gray-300"
+                }`}
+              />
+            ))}
           </div>
         </div>
       </div>

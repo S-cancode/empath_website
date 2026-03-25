@@ -45,17 +45,19 @@ export async function POST(req: NextRequest) {
         to: email,
         subject: "You're on the Empath waitlist!",
         html: `
-          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 480px; margin: 0 auto; padding: 40px 20px;">
-            <h1 style="color: #0EA5E9; font-size: 28px; margin-bottom: 16px;">Welcome to Empath</h1>
-            <p style="color: #374151; font-size: 16px; line-height: 1.6;">
-              You're on the list! We'll let you know as soon as Empath is ready for you.
+          <div style="max-width: 480px; margin: 0 auto; padding: 40px 20px;">
+            <img src="https://empathapp.co.uk/images/empath-logo.png" alt="Empath" style="width: 140px; margin-bottom: 32px;" />
+            <h1 style="font-family: 'Fraunces', Georgia, serif; color: #0088CC; font-size: 28px; margin-bottom: 16px;">
+              Welcome to Empath
+            </h1>
+            <p style="font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #374151; font-size: 16px; line-height: 1.6;">
+              We're so glad you're here. You've just taken a meaningful step, and we want you to know it matters.
             </p>
-            <p style="color: #374151; font-size: 16px; line-height: 1.6;">
-              Empath connects you with someone who truly gets what you're going through.
-              Not a therapist. Not a bot. A real person, matched by AI.
+            <p style="font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #374151; font-size: 16px; line-height: 1.6;">
+              Stay tuned for updates as we get closer to launch. We're building something special, and you're a part of it from the very beginning.
             </p>
-            <p style="color: #6B7280; font-size: 14px; margin-top: 32px;">
-              — The Empath Team
+            <p style="font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #6B7280; font-size: 14px; margin-top: 32px;">
+              With love,<br/>The Empath Team
             </p>
           </div>
         `,

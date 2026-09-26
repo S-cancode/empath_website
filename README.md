@@ -1,10 +1,10 @@
-# Empath — Waitlist Landing Page
+# Empath — Marketing Website
 
-A waitlist landing page for Empath, a peer support app that matches people going through similar life experiences for anonymous, empathetic conversations.
+The marketing site for Empath, a peer support app that matches people going through similar life experiences. The home page is a scroll-driven story ("from signal to connection") that sends visitors to the TestFlight beta; `/terms` and `/privacy` mirror the app's current legal texts.
 
 ## Tech Stack
 
-- **Next.js 14** (App Router) + TypeScript
+- **Next.js 16** (App Router) + TypeScript
 - **Tailwind CSS** + shadcn/ui
 - **Supabase** for storing waitlist emails
 - **Resend** for sending confirmation emails
@@ -85,29 +85,28 @@ Open [http://localhost:3000](http://localhost:3000).
 ```
 src/
   app/
-    layout.tsx              Root layout
-    page.tsx                Landing page
-    globals.css             Global styles
+    layout.tsx              Root layout, fonts, site metadata
+    page.tsx                Home page (the five scroll scenes)
+    experience.css          Scroll-scene, phone mock-up and reduced-motion styles
+    globals.css             Global styles and Tailwind tokens
+    terms/, privacy/        Legal pages (mirror the app's v1.2 texts)
     api/waitlist/route.ts   Waitlist API endpoint
   components/
-    navbar.tsx              Navigation bar
-    hero.tsx                Hero section with email capture
-    about.tsx               About/mission sections
-    how-it-works.tsx        3-step explanation
-    value-props.tsx         4 value propositions
-    footer.tsx              Footer with links
-    waitlist-form.tsx       Email capture form
-    empath-logo.tsx         SVG logo component
+    experience/
+      engine.ts             Scroll engine: writes --p per scene, paints the thread canvas
+      experience.tsx        Mounts the canvas and engine
+      scenes.tsx            Hero, product stage, connection, reveal, safety, finale
+      phone.tsx             Recreated Empath iPhone screens
+    navbar.tsx, footer.tsx  Site chrome
+    legal-shell.tsx         Shared layout for /terms and /privacy
+    waitlist-form.tsx       Email capture form (not currently on the page)
     ui/                     shadcn/ui components
   lib/
+    legal-text.ts           Terms and consent text, copied from the app (keep in sync)
+    site.ts                 TestFlight link and brand colours
     supabase.ts             Supabase client
-    utils.ts                Utility functions
 ```
 
-## Images
+### Motion and accessibility
 
-The `public/images/` directory contains placeholder images for the "How it works" section. Replace them with your own:
-
-- `step-1.jpg` — Person reflecting (Step 1: Tell us what you're going through)
-- `step-2.jpg` — Connection/empathy imagery (Step 2: We find your match)
-- `step-3.jpg` — Two people talking (Step 3: Start a conversation)
+Scroll scenes use native scrolling with `position: sticky`; nothing hijacks or snaps the scroll. Each `[data-scene]` gets a `--p` (0–1) custom property and CSS derives transforms from it, so scrolling back reverses everything. With `prefers-reduced-motion: reduce` the scenes collapse into a static layout and the thread stops animating. Without JavaScript every section keeps a solid background and stays readable.

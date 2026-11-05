@@ -499,7 +499,74 @@
 .x-loupe-voice .ph-voice {
   width: 100%;
 }
-.x-loupe-voice .ph-checking {
+.x-loupe-voice /* Home tab: counter, "How it works" and the support note sit under the button. */
+.ph-home .ph-counter {
+  margin: 0.9em 0 0;
+}
+.ph-how {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin-top: 1.3em;
+  font-size: 0.82em;
+  color: var(--color-gray-600);
+}
+.ph-how-t {
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin-bottom: 0.1em;
+}
+.ph-how-s {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+.ph-how-s b {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.7em;
+  height: 1.7em;
+  border-radius: 50%;
+  font-size: 0.85em;
+  background: rgb(0 136 204 / 0.12);
+  color: var(--brand-blue);
+}
+.ph-support {
+  margin-top: 1.1em;
+  text-align: center;
+  font-size: 0.72em;
+  color: var(--color-gray-500);
+}
+.ph-support span {
+  color: var(--brand-blue);
+  font-weight: 600;
+}
+/* Chat: a swipe-to-reply quote and a reaction pill, as in the app. */
+.ph-reply {
+  display: block;
+  margin: -0.15em -0.25em 0.45em;
+  padding: 0.35em 0.6em;
+  border-left: 0.2em solid white;
+  border-radius: 0.5em;
+  background: rgb(255 255 255 / 0.16);
+  font-size: 0.88em;
+}
+.ph-reply b {
+  display: block;
+  font-weight: 600;
+}
+.ph-react {
+  align-self: flex-end;
+  margin: -0.85em 0.7em 0 0;
+  padding: 0.1em 0.45em;
+  border-radius: 1em;
+  background: white;
+  box-shadow: 0 0 0 0.12em var(--paper);
+  font-size: 0.85em;
+  line-height: 1.4;
+}
+.ph-checking {
   font-size: 0.66em !important;
   text-align: right;
 }
@@ -665,7 +732,7 @@
   background: white;
   border-radius: 1.1em;
   padding: 1em 1em 2em;
-  min-height: 9.5em;
+  min-height: 8.4em;
   font-size: 0.95em;
   line-height: 1.45;
   border: 1px solid var(--color-gray-100);
@@ -765,16 +832,6 @@
 .ph-label {
   font-size: 0.84em;
   color: var(--color-gray-500);
-}
-.ph-badge {
-  display: inline-block;
-  margin: 0.7em 0;
-  padding: 0.35em 0.85em;
-  border-radius: 2em;
-  background: var(--paper);
-  color: var(--brand-blue);
-  font-size: 0.78em;
-  font-weight: 600;
 }
 .ph-summary {
   text-align: left;
@@ -925,6 +982,73 @@
   font-size: 0.72em;
   opacity: 0.85;
 }
+/* Home tab: counter, "How it works" and the support note sit under the button. */
+.ph-home .ph-counter {
+  margin: 0.9em 0 0;
+}
+.ph-how {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin-top: 1.3em;
+  font-size: 0.82em;
+  color: var(--color-gray-600);
+}
+.ph-how-t {
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin-bottom: 0.1em;
+}
+.ph-how-s {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+.ph-how-s b {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.7em;
+  height: 1.7em;
+  border-radius: 50%;
+  font-size: 0.85em;
+  background: rgb(0 136 204 / 0.12);
+  color: var(--brand-blue);
+}
+.ph-support {
+  margin-top: 1.1em;
+  text-align: center;
+  font-size: 0.72em;
+  color: var(--color-gray-500);
+}
+.ph-support span {
+  color: var(--brand-blue);
+  font-weight: 600;
+}
+/* Chat: a swipe-to-reply quote and a reaction pill, as in the app. */
+.ph-reply {
+  display: block;
+  margin: -0.15em -0.25em 0.45em;
+  padding: 0.35em 0.6em;
+  border-left: 0.2em solid white;
+  border-radius: 0.5em;
+  background: rgb(255 255 255 / 0.16);
+  font-size: 0.88em;
+}
+.ph-reply b {
+  display: block;
+  font-weight: 600;
+}
+.ph-react {
+  align-self: flex-end;
+  margin: -0.85em 0.7em 0 0;
+  padding: 0.1em 0.45em;
+  border-radius: 1em;
+  background: white;
+  box-shadow: 0 0 0 0.12em var(--paper);
+  font-size: 0.85em;
+  line-height: 1.4;
+}
 .ph-checking {
   align-self: flex-end;
   font-size: 0.72em;
@@ -1035,13 +1159,6 @@
   font-family: var(--font-fraunces), serif;
   font-size: 1.4rem;
 }
-.x-person-q {
-  white-space: nowrap;
-  font-size: 0.66rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--color-gray-400);
-}
 .x-person-chip {
   font-size: 0.85rem;
   padding: 0.45rem 0.95rem;
@@ -1115,9 +1232,6 @@
   }
   .x-person {
     top: 40%;
-  }
-  .x-person-q {
-    letter-spacing: 0.14em;
   }
   .x-person-left {
     left: 29vw;

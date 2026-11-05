@@ -91,8 +91,7 @@ function Loupes() {
       </div>
       <div className="x-loupe" data-i="1">
         <div className="x-loupe-card">
-          <span className="ph-badge">Work &amp; Career</span>
-          <p>Feeling exhausted after months of long hours and finding it hard to switch off.</p>
+          <p className="x-loupe-type">Feeling exhausted after months of long hours and finding it hard to switch off.</p>
         </div>
         <span className="x-loupe-cap">A summary, never your name</span>
       </div>
@@ -180,13 +179,13 @@ export function StageScene() {
 
 /* ACT 3: connection ------------------------------------------------------ */
 
-function Person({ who, intent, side }: { who: string; intent: string; side: "left" | "right" }) {
+// In the app a chat only starts once both people accept the match.
+function Person({ who, side }: { who: string; side: "left" | "right" }) {
   return (
     <div className={`x-person x-person-${side}`}>
       <span className="x-avatar" aria-hidden="true" />
       <span className="x-person-who">{who}</span>
-      <span className="x-person-q">Right now I&apos;m…</span>
-      <span className="x-person-chip">{intent}</span>
+      <span className="x-person-chip">Accepted ✓</span>
     </div>
   );
 }
@@ -206,8 +205,8 @@ export function ConnectScene() {
         </div>
 
         <div className="x-c-people">
-          <Person side="left" who="You" intent="Looking for support" />
-          <Person side="right" who="Your match" intent="Able to support" />
+          <Person side="left" who="You" />
+          <Person side="right" who="Your match" />
         </div>
 
         <h2 id="connect-title" className="x-c-title">

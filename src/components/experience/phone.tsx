@@ -1,4 +1,4 @@
-import { Compass, MessagesSquare, CircleUserRound, Play, Mic, ArrowUp } from "lucide-react";
+import { House, MessagesSquare, CircleUserRound, Play, Mic, ArrowUp } from "lucide-react";
 
 /**
  * Recreations of real Empath iOS screens (client/app in the empath repo),
@@ -25,12 +25,12 @@ export function Phone({ children, className = "" }: { children: React.ReactNode;
   );
 }
 
-function TabBar({ active }: { active: "explore" | "chats" }) {
+function TabBar({ active }: { active: "home" | "chats" }) {
   return (
     <div className="ph-tabs" aria-hidden="true">
-      <span className={active === "explore" ? "on" : ""}>
-        <Compass />
-        Explore
+      <span className={active === "home" ? "on" : ""}>
+        <House />
+        Home
       </span>
       <span className={active === "chats" ? "on" : ""}>
         <MessagesSquare />
@@ -44,10 +44,16 @@ function TabBar({ active }: { active: "explore" | "chats" }) {
   );
 }
 
+// The app's Home tab "How it works" steps (client/src/components/home/HowItWorks.tsx).
+const HOME_STEPS = [
+  "Share what's on your mind",
+  "We match you with someone who may relate",
+  "You both accept, then start chatting",
+];
+
 export function PromptScreen() {
   return (
-    <div className="ph-view ph-explore">
-      <div className="ph-counter">0 of 10 matches used today</div>
+    <div className="ph-view ph-home">
       <h4 className="ph-h">What&apos;s weighing on you?</h4>
       <p className="ph-sub">Share what&apos;s on your mind, and we&apos;ll find someone who understands.</p>
       <div className="ph-input" data-focus="prompt">
@@ -58,23 +64,35 @@ export function PromptScreen() {
         <span className="ph-count">98/500</span>
       </div>
       <div className="ph-btn">Find my match</div>
-      <TabBar active="explore" />
+      <div className="ph-counter">0 of 3 matches used today</div>
+      <div className="ph-how">
+        <span className="ph-how-t">How it works</span>
+        {HOME_STEPS.map((step, i) => (
+          <span key={step} className="ph-how-s">
+            <b>{i + 1}</b>
+            {step}
+          </span>
+        ))}
+      </div>
+      <div className="ph-support">
+        Peer support, not professional advice. <span>Need urgent help? →</span>
+      </div>
+      <TabBar active="home" />
     </div>
   );
 }
 
 export function MatchScreen() {
   return (
-    <div className="ph-view ph-explore ph-dim">
-      <div className="ph-counter">1 of 10 matches used today</div>
+    <div className="ph-view ph-home ph-dim">
       <h4 className="ph-h">What&apos;s weighing on you?</h4>
+      <p className="ph-sub">Share what&apos;s on your mind, and we&apos;ll find someone who understands.</p>
       <div className="ph-sheet">
         <span className="ph-emoji" aria-hidden="true">
           🤝
         </span>
         <h5>We found you a match!</h5>
         <p className="ph-label">Here&apos;s a summary of their situation:</p>
-        <span className="ph-badge">Work &amp; Career</span>
         <div className="ph-summary" data-focus="summary">
           Feeling exhausted after months of long hours and finding it hard to switch off.
         </div>
@@ -84,7 +102,7 @@ export function MatchScreen() {
           <span className="ph-btn sm ghost">Skip</span>
         </div>
       </div>
-      <TabBar active="explore" />
+      <TabBar active="home" />
     </div>
   );
 }
@@ -113,19 +131,23 @@ export function ChatScreen() {
     <div className="ph-view ph-chat">
       <div className="ph-chat-head">
         <span className="ph-back">←</span>
-        <span className="ph-chat-name">
-          Juniper
-          <small>tap to rename</small>
-        </span>
+        <span className="ph-chat-name">Juniper</span>
         <span className="ph-dots">⋮</span>
       </div>
       <div className="ph-msgs">
         <span className="ph-date">Today</span>
         <div className="ph-msg theirs">Long hours got me too last year. What&apos;s been the hardest part?</div>
         <div className="ph-msg mine">
+          <span className="ph-reply">
+            <b>Juniper</b>
+            What&apos;s been the hardest part?
+          </span>
           Honestly? Never switching off. Even at the weekend.
           <small>✓✓</small>
         </div>
+        <span className="ph-react mine" aria-label="Reaction: heart">
+          ❤️
+        </span>
         <div className="ph-msg theirs">Same. Send a voice note if that&apos;s easier than typing.</div>
         <div data-focus="voice">
           <VoiceBubble mine />

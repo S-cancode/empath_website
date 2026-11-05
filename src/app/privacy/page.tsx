@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
 };
 
-const LAST_UPDATED = "26 September 2026";
+const LAST_UPDATED = "5 November 2026";
 
 const processors = [
   {
@@ -36,14 +36,14 @@ const processors = [
     why: "Reliability",
   },
   {
-    name: "Expo / Apple Push (APNs)",
+    name: "Expo (US) / Apple Push (APNs)",
     what: "Device push token",
     why: "Neutral “new message” notifications (no message content)",
   },
   {
-    name: "Railway",
-    what: "Encrypted application data",
-    why: "Hosting (backend and database)",
+    name: "Railway (US)",
+    what: "All application data (messages encrypted at rest)",
+    why: "Hosting (app server, database, cache)",
   },
 ];
 
@@ -57,8 +57,9 @@ export default function PrivacyPage() {
         <>
           This policy covers the Empath iPhone app and this website. It matches the Privacy Notice
           and the consent screen inside the app. In short: we use OpenAI for matching and to
-          safety-check every message before it is delivered, messages are encrypted at rest and
-          deleted after 7 days, and your peer only ever sees the nickname you choose.
+          safety-check every message before it is delivered, the app&apos;s servers are in the United
+          States, messages are encrypted at rest and deleted after 7 days, and your peer only ever
+          sees the nickname you choose.
         </>
       }
     >
@@ -87,6 +88,10 @@ export default function PrivacyPage() {
           <li>
             Crisis-signposting event logs (recording that a safety keyword was detected, without
             storing the full message)
+          </li>
+          <li>
+            Safety-check records (that a message you tried to send was stopped before delivery, and
+            the category of the problem, never the message itself)
           </li>
           <li>Session ratings and basic usage analytics</li>
         </ul>
@@ -166,14 +171,23 @@ export default function PrivacyPage() {
       </section>
 
       <section>
-        <h2>5. International transfers</h2>
+        <h2>5. Where your data is stored, and international transfers</h2>
         <p>
-          The only routine transfer outside the UK is to our AI provider, OpenAI, whose servers are
-          in the United States: an identity-stripped version of your matching text (for matching),
-          the full content of each chat message (for the pre-delivery safety check), voice-note audio
-          (transcribed for that check, then discarded) and, only if you turn on auto-translate, your
-          chat messages for translation. These transfers are protected by Standard Contractual
-          Clauses.
+          Empath&apos;s servers and database are hosted by <strong>Railway in the United States</strong>{" "}
+          (US West, California). This means your account details, your chat messages (encrypted at
+          rest) and the other records in this policy are stored and processed in the United States.
+        </p>
+        <p className="mt-3">
+          Our AI provider, OpenAI, also processes data in the United States: an identity-stripped
+          version of your matching text (for matching), the full content of each chat message (for
+          the pre-delivery safety check), voice-note audio (transcribed for that check, then
+          discarded) and, only if you turn on auto-translate, your chat messages for translation.
+          Push notifications go through Expo (United States) and Apple, using only your
+          device&apos;s push token. Crash reports go to Sentry in the EU.
+        </p>
+        <p className="mt-3">
+          Transfers to the United States are protected by Standard Contractual Clauses with the UK
+          Addendum, set out in each provider&apos;s data processing agreement.
         </p>
       </section>
 
@@ -195,6 +209,10 @@ export default function PrivacyPage() {
           </li>
           <li>Translated text (auto-translate users only): encrypted cache for up to 24 hours</li>
           <li>Crisis-signposting event logs: 12 months</li>
+          <li>
+            Safety-check records (that a message was stopped, not the message): 12 months; deleted
+            immediately when you delete your account
+          </li>
           <li>Session ratings and usage analytics: anonymised within 90 days</li>
           <li>Account data: until you delete your account</li>
           <li>
@@ -230,11 +248,15 @@ export default function PrivacyPage() {
       </section>
 
       <section>
-        <h2>9. Provider retention</h2>
+        <h2>9. Provider data retention</h2>
         <p>
-          We are seeking written confirmation of OpenAI&apos;s data-processing terms and
-          zero-data-retention for the moderation, transcription and translation endpoints. Until that
-          is confirmed, we do not claim that providers immediately delete inputs.
+          OpenAI&apos;s API data usage policy states that data submitted through their API is
+          retained for up to 30 days for abuse and misuse monitoring, after which it is deleted
+          unless OpenAI is legally required to keep it longer. API data is not used to train
+          OpenAI&apos;s models. This applies to matching analysis, pre-delivery moderation,
+          voice-note transcription and translation. We have requested zero-data-retention status,
+          which would remove the 30-day window; until it is approved, the 30-day retention period
+          applies.
         </p>
       </section>
 
